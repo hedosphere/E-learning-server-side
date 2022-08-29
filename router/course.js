@@ -31,6 +31,7 @@ import {
   markAsCompleted,
   markAsInCompleted,
   listCompleted,
+  enroll,
 } from "../controller/course";
 
 const route = express.Router();
@@ -95,6 +96,9 @@ route.post("/mark-completed", requireSignin, markAsCompleted);
 route.post("/mark-incompleted", requireSignin, markAsInCompleted);
 route.post("/list-completed", requireSignin, listCompleted);
 
+route.get("/course/enroll/:slug", requireSignin, enroll);
+
+// const { data } = await axios.get(`/api/course/enroll/${slug}`);
 //
 //
 module.exports = route;

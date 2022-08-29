@@ -562,9 +562,20 @@ export const listCompleted = async (req, res) => {
   }
 };
 
-//
+// enroll
 
 //
+
+export const enroll = async (req, res) => {
+  const { slug } = req.params;
+  const course = await Course.findOne({ slug }).exec();
+  if (!course) return;
+  const user = await User.find({ courses: { $in: course._id } });
+  // console.log(course._id, "enroll list", user.length);
+  // if (!user) return;
+
+  return res.json(user.length);
+};
 
 //
 
